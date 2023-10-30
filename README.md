@@ -17,7 +17,7 @@ Optional, to have a UI tool for k8s, you can install Either:
 
 Create a new local cluster for this workshop:
 ```sh
-$ kind cluster create --name=socarotte
+$ kind create cluster --name socarotte
 ```
 
 ## Run your k8s deployments
