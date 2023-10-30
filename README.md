@@ -22,8 +22,11 @@ $ kind create cluster --name socarotte
 
 ## Run your k8s deployments
 
-Run the two yaml file describing ressources we want to apply on the local k8s cluster:
+Based on your processor (arm or amd), move to the correct directory and 
+run the two yaml file describing ressources we want to apply on the local k8s cluster:
+
 ```sh
+# inside arm/ or amd/
 $ kubectl apply -f deploy-socarotte-backend.yml -f deploy-socarotte-frontend.yml
 ```
 

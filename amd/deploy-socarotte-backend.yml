@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socarotte-backend-deployment
+  labels:
+    app: socarotte-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socarotte-backend
+  template:
+    metadata:
+      labels:
+        app: socarotte-backend
+    spec:
+      containers:
+        - name: socarotte-backend
+          image: florentfauchille/socarotte-backend-amd:1.0.1
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "250m"
+            requests:
+              memory: 32Mi
+              cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: socarotte-backend-service
+spec:
+  type: NodePort
+  selector:
+    app: socarotte-backend
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 3000

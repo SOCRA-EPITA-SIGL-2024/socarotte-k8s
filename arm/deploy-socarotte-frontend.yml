@@ -1,27 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: socarotte-backend-deployment
+  name: socarotte-frontend-deployment
   labels:
-    app: socarotte-backend
+    app: socarotte-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: socarotte-backend
+      app: socarotte-frontend
   template:
     metadata:
       labels:
-        app: socarotte-backend
+        app: socarotte-frontend
     spec:
       containers:
-        - name: socarotte-backend
-          image: florentfauchille/socarotte-backend:1.0.0
+        - name: socarotte-frontend
+          image: florentfauchille/socarotte-frontend-arm:1.0.3
+          
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           resources:
             limits:
-              memory: 512Mi
+              memory: 64Mi
               cpu: "250m"
             requests:
               memory: 32Mi
@@ -30,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: socarotte-backend-service
+  name: socarotte-frontend-service
 spec:
   type: NodePort
   selector:
-    app: socarotte-backend
+    app: socarotte-frontend
   ports:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 3000
+    targetPort: 80
