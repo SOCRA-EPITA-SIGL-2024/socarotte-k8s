@@ -16,17 +16,20 @@ Optional, to have a UI tool for k8s, you can install Either:
 ## Create the kind-socarotte cluster
 
 Create a new local cluster for this workshop:
+
 ```sh
 $ kind create cluster --name socarotte
 ```
 
 ## Run your k8s deployments
 
-Based on your processor (arm or amd), move to the correct directory and 
+Based on your processor (arm64 or amd64), move to the correct directory and 
 run the two yaml file describing ressources we want to apply on the local k8s cluster:
 
+> Note: to know your processor arch, you can run the command `lscpu` or `uname -a`
+
 ```sh
-# inside arm/ or amd/
+# inside arm64/ or amd64/
 $ kubectl apply -f deploy-socarotte-backend.yml -f deploy-socarotte-frontend.yml
 ```
 
